@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Patchup
+namespace UkkonenSuffixTree
 {
     public class Class1
     {
