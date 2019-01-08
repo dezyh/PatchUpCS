@@ -13,10 +13,10 @@ namespace Patchup
             var patch = new Patch(source, target);
 
             // Save the patch to a .patch file
-            patch.Save(@"example", true);
+            patch.Save("example");
 
             // Load a patch from a .patch file
-            patch.Load(@"example");
+            patch.Load("example");
 
             // Apply a patch to the source to get the target
             var patched = patch.Apply(source);
