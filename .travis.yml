@@ -1,0 +1,11 @@
+language: csharp
+mono: none
+dotnet: 2.1.502
+
+install:
+- dotnet restore
+
+script:
+- dotnet build
+- dotnet test Diff.Tests/Diff.Tests.csproj
+- dotnet test Patchup.Tests/Patchup.Tests.csproj
