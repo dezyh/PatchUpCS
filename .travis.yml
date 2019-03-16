@@ -3,10 +3,8 @@ mono: none
 dotnet: 2.1.502
 
 install:
-- dotnet restore
-
+- dotnet restore ./Source/Patchup.sln
 script:
-- cd ./Source
-- dotnet build
-- dotnet test Diff.Tests/Diff.Tests.csproj
-- dotnet test Patchup.Tests/Patchup.Tests.csproj
+- dotnet build ./Source/Patchup.sln
+- dotnet test ./Source/Diff.Tests/Diff.Tests.csproj
+- dotnet test ./Source/Patchup.Tests/Patchup.Tests.csproj
