@@ -3,16 +3,20 @@ dist: trusty
 sudo: required
 mono: none
 dotnet: 2.1.502
-
-before_install:
-- chmod +x ./Scripts/build.sh
-- chmod +x ./Scripts/test.sh
-- chmod +x ./Scripts/deploy.sh
-
 script:
-- ./Scripts/build.sh
-- ./Scripts/test.sh
-
+- dotnet restore ./Source/Patchup.sln
+- dotnet build ./Source/Patchup.sln
+- dotnet test ./Source/Diff.Tests/Diff.Tests.csproj
+- dotnet test ./Source/Patchup.Tests/Patchup.Tests.csproj
+- docker build --tag dezyh/patchup
 services:
 - docker
-
+before_deploy:
+- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+deploy:
+  provider: script
+  script: docker push dezyh/patchup
+  on: 
+    branch: master
+env:
+  secure: yG70o28oang9p+QguT8o6WLfBbtORef2vLzeUzlmyXyZ/+XZTan5zOIPvdUP8GaPEunooIyKt+wZyJkGEx8npLcLdtF+1k01N7eR9xDiQbUI1cJvef3Mzm+aORFvHw3kyc0QOtrWymjlrCf0CBPjJpJUL1sTA1NdYrvkgZwdWdjVJYNHalC4uy6YT9AB/yE0yG52+BjbofxivJOQOvWxBQWZgMtyis6Q338N8vFK5E3qKrgYQ/1Ktib+O5T3L9Ph3oCxTriNaqJLmNsFrz3QjXkH0yFo/syjo0l0oSY4sfLm7/tDjm8cEK4Qn3R4Ee4BaoVaxYsji46JWNZiBHk6bAfcx9knKGvsDY0qgxWg39FMBOF64v6lJlxBOwhQKszYgptxJFXTw6oSvoaYz7Jg4vPaHMohiCU9Fo6KIQfPu/0XbuaTU7ZPP4ZvRqWwct+ViNnI0eHymllOX8Vblpv0tqQ0XrPo632WOP3TerGZLSnk9z3WpMxDiFEMXh6G+mW5p6o+V8NNz3XZg00DA7S/XkkVQyc+avbHiORIpB7GAqXr4AFDOdCMMcWHgDlzEv5jsd8kgHiFinKFX5aiN3mZnCtbbHGgYYv9xY0KEOxCpMM0mI8se2wVJHHeAvndpIVca8Lb6PvD4beXkc+CITX3d8AVj9SEwisTEf4Hbe8kID4=
