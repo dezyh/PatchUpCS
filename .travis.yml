@@ -1,10 +1,18 @@
 language: csharp
+dist: trusty
+sudo: required
 mono: none
 dotnet: 2.1.502
 
-install:
-- dotnet restore ./Source/Patchup.sln
+before_install:
+- chmod +x ./build.sh
+- chmod +x ./test.sh
+- chmod +x ./deploy.sh
+
 script:
-- dotnet build ./Source/Patchup.sln
-- dotnet test ./Source/Diff.Tests/Diff.Tests.csproj
-- dotnet test ./Source/Patchup.Tests/Patchup.Tests.csproj
+- ./build.sh
+- ./test.sh
+
+services:
+- docker
+
