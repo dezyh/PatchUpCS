@@ -5,9 +5,9 @@ mono: none
 dotnet: 2.1.502
 
 before_install:
-- chmod +x ./build.sh
-- chmod +x ./test.sh
-- chmod +x ./deploy.sh
+- chmod +x ./Scripts/build.sh
+- chmod +x ./Scripts/test.sh
+- chmod +x ./Scripts/deploy.sh
 
 script:
 - ./build.sh
