@@ -10,8 +10,8 @@ before_install:
 - chmod +x ./Scripts/deploy.sh
 
 script:
-- ./build.sh
-- ./test.sh
+- ./Scripts/build.sh
+- ./Scripts/test.sh
 
 services:
 - docker
