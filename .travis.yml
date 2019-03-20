@@ -4,15 +4,12 @@ sudo: required
 mono: none
 dotnet: 2.1.502
 
-before_install:
-- chmod +x ./Scripts/build.sh
-- chmod +x ./Scripts/test.sh
-- chmod +x ./Scripts/deploy.sh
+services:
+  - docker
 
 script:
-- ./Scripts/build.sh
-- ./Scripts/test.sh
-
-services:
-- docker
+  - dotnet restore ./Source/Patchup.sln
+  - dotnet build ./Source/Patchup.sln
+  - dotnet test ./Source/Diff.Tests/Diff.Tests.csproj
+  - dotnet test ./Source/Patchup.Tests/Patchup.Tests.csproj
 
