@@ -19,11 +19,11 @@ var patch = new Patch(source, target);
 ```
 Save the patch to file
 ```
-patch.Save("patch.pup")
+patch.Save("patch.pup");
 ```
 Load a patch from file
 ```
-patch.Load("patch.pup")
+patch.Load("patch.pup");
 ```
 Apply a patch
 ```
