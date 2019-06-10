@@ -117,11 +117,9 @@ namespace Patchup.Diff.Logic
                     {
                         // Make sure the k-line is valid.
 
-                        bool valid = (N < M && k <= M && ((k != -d && k > -N) ||
-                                                          (k == -d && k >= -N)) ||
-                                      N > M && k >= -N && ((k != d && k < M) ||
-                                                           (k == d && k <= M)) ||
-                                      N == M && k >= -N && k <= M);
+                        bool valid = N < M && k <= M && (k != -d && k > -N || k == -d && k >= -N) ||
+                                     N > M && k >= -N && (k != d && k < M || k == d && k <= M) ||
+                                     N == M && k >= -N && k <= M;
 
                             /*
                         bool valid = ((N < M && k != -d && k > -N && k <= M) ||

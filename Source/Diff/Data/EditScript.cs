@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 
 namespace Patchup.Diff.Data
 {
@@ -25,6 +27,7 @@ namespace Patchup.Diff.Data
         /// General list of all edits. 
         /// </summary>
         public List<Edit> Edits { get; set; }
+        public ConcurrentBag<Edit> SafeEdits { get; set; }
 
         /// <summary>
         /// Specific list of deletions.
@@ -43,6 +46,7 @@ namespace Patchup.Diff.Data
 
         public EditScript()
         {
+            this.SafeEdits = new ConcurrentBag<Edit>();
             this.Edits = new List<Edit>();
             this.Deletions = new List<Edit>();
             this.Insertions = new List<Edit>();
@@ -58,12 +62,22 @@ namespace Patchup.Diff.Data
             this.Edits.Add(edit);
         }
 
+        public void SafeAdd(Edit edit)
+        {
+            this.SafeEdits.Add(edit);
+        }
+
         /// <summary>
         /// Orders the edit script so that each edit is in the correct order in which it should have been found.
         /// This is required as when using multiple threads to calculate the edit script, edits are not guaranteed to be calculated in the correct order. 
         /// </summary>
         public void Order()
         {
+            if (this.Edits.Count == 0 && this.SafeEdits.Count != 0)
+            {
+                this.Edits = this.SafeEdits.ToList();
+            }
+
             this.Edits.Sort((x,y) => x.Index.CompareTo(y.Index));
         }
 

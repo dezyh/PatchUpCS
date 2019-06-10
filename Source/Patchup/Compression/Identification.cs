@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace Patchup.Compression
+﻿namespace Patchup.Compression
 {
     public static class Identification
     {
