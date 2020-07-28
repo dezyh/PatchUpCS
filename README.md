@@ -1,4 +1,4 @@
-# PatchUp [![Build Status](https://travis-ci.com/Dezyh/Patchup.CSharp.svg?branch=master)](https://travis-ci.com/Dezyh/Patchup.CSharp)
+# PatchUp [![Build Status](https://travis-ci.com/Dezyh/PatchUpCS.svg?branch=master)](https://travis-ci.com/Dezyh/PatchUpCS)
 
 A library to create patches between two binary files, aimed at reducing file sizes when updating large but similar files.
 
