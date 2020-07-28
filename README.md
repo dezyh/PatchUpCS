@@ -29,4 +29,4 @@ Apply a patch
 ```
 var patched = patch.Apply(source);
 ```
-For more examples, see the [examples file](https://github.com/Dezyh/Patchup/blob/master/Source/Example/Example.cs).
+For more examples, see the [examples file](/Source/Example/Example.cs).
